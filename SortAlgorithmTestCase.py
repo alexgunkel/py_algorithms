@@ -17,10 +17,11 @@ class SortAlgorithmTestCase(unittest.TestCase):
     def test_sort_data(self):
         for name in ['random10', 'random100', 'random1000']:
             example = self.read_test_data(name)
+            orig_length = len(example)
             result = self.apply_sort(example)
             index = 1
             length = len(result)
-            self.assertEqual(length, len(example))
+            self.assertEqual(length, orig_length)
             while index < length:
                 self.assertGreaterEqual(result[index], result[index - 1])
                 index = index + 1

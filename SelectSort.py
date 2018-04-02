@@ -9,7 +9,7 @@ def select_sort(list_of_things):
             if item < smallest_value:
                 smallest_value = item
                 smallest_key = index
-        result[len(result):] = [smallest_value]
+        result.append(smallest_value)
         length = length - 1
         del list_of_things[smallest_key]
     return result
