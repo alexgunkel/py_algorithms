@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+
+import time
+import BubbleSort
+import MergeSort
+import InsertionSort
+import SelectSort
+
+
+def read_test_data(file_name):
+    result = []
+    with open("./data/" + file_name) as file:
+        for line in file:
+            result.append(line.strip())
+    return result
+
+
+def test_sorter(sorter, file_name):
+    test_data = read_test_data(file_name)
+    start_time_ms = time.time() * 1000
+    result = sorter(test_data)
+    duration_ms = (time.time() * 1000) - start_time_ms
+    print(file_name + ':', duration_ms, 'ms')
+
+
+file_names = [
+    'random10',
+    'random100',
+    'random1000',
+    'random10000',
+    'random100000',
+]
+
+sorters = [
+    MergeSort.merge_sort,
+    BubbleSort.bubble_sort,
+    InsertionSort.insertion_sort,
+    SelectSort.select_sort,
+]
+
+
+for sorter in sorters:
+    print('Test sort-method ' + sorter.__name__)
+    for file_name in file_names:
+        test_sorter(sorter, file_name)
+
+
